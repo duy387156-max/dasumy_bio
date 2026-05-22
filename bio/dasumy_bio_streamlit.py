@@ -145,8 +145,13 @@ st.markdown(
                     <span style="width:0.65rem; height:0.65rem; background: #f8b4a2; border-radius: 999px; display:inline-block;"></span>
                     LIVE NOW
                 </div>
-                <h1 class="hero-title">DASUMY</h1>
-                <p class="hero-subtitle">Lo-fi & Chillhop Music</p>
+                <div style="display:flex; align-items:center; gap:1rem; margin-top:1.4rem; margin-bottom:1.1rem; flex-wrap:wrap;">
+                    <img src="{logo_src}" alt="DaSuMy logo" style="width:96px; height:96px; border-radius: 20px; object-fit: cover; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04);" />
+                    <div>
+                        <h1 class="hero-title">DASUMY</h1>
+                        <p class="hero-subtitle">Lo-fi & Chillhop Music</p>
+                    </div>
+                </div>
                 <p class="hero-copy">🎧 Không gian âm nhạc nhẹ nhàng, mộc mạc và thư giãn. Hãy dừng chân, đeo tai nghe và thả hồn theo những giai điệu của DaSumy.</p>
                 <a class="big-cta" href="https://www.youtube.com/@DaSuMyMusic" target="_blank">▶ Ghé kênh YouTube</a>
                 <p style="margin-top: 1rem; color: #c7c7d2;">Hoặc kết nối với mình trên <a href="{FACEBOOK_URL}" target="_blank" style="color: rgb(224,150,131); text-decoration: none;">Facebook</a>.</p>
