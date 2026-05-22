@@ -1,23 +1,46 @@
-﻿import os
-import base64
-import streamlit as st
+﻿import streamlit as st
 
 st.set_page_config(page_title="DaSuMy Music Bio", page_icon="🎵", layout="wide")
 
-logo_path = "dasumy_logo.png"
-if os.path.exists(logo_path):
-    with open(logo_path, "rb") as f:
-        logo_src = "data:image/png;base64," + base64.b64encode(f.read()).decode()
+lang = st.radio("Chọn ngôn ngữ / Language", ("Tiếng Việt", "English"), horizontal=True)
+if lang == "Tiếng Việt":
+    hero_badge = "LIVE NOW"
+    hero_title = "DASUMY"
+    hero_subtitle = "Lo-fi & Chillhop Music"
+    hero_copy = "🎧 Không gian âm nhạc nhẹ nhàng, mộc mạc và thư giãn. Hãy dừng chân, đeo tai nghe và thả hồn theo những giai điệu của DaSumy."
+    cta_label = "▶ Ghé kênh YouTube"
+    contact_line = "Hoặc kết nối với mình trên"
+    playlist_section = "Trình nghe nhạc"
+    playlist_desc = "Nghe playlist chính thức của kênh DaSumy ngay tại đây."
+    playlist_link_text = "Mở playlist trên YouTube"
+    cooperation_title = "Gửi yêu cầu hợp tác"
+    cooperation_desc = "Nhấn vào link để kết nối trực tiếp với Facebook của mình."
+    form_name = "Tên của bạn"
+    form_email = "Email liên hệ"
+    form_message = "Lời nhắn hoặc yêu cầu mua beat"
+    submit_text = "Gửi tin nhắn"
+    success_text = "Gửi lời nhắn thành công! Mình sẽ liên hệ lại sớm 📨"
+    footer_note = "Thank you for listening ✨"
+    copyright_text = "© 2026 DASUMY. All rights reserved."
 else:
-    logo_src = "https://via.placeholder.com/260x260.png?text=DaSumy"
-
-channel_icon_paths = ["dasumy_channel_icon.png", "dasumy_channel_icon.png.png"]
-channel_icon_src = "https://img.icons8.com/color/256/youtube-play.png"
-for path in channel_icon_paths:
-    if os.path.exists(path):
-        with open(path, "rb") as f:
-            channel_icon_src = "data:image/png;base64," + base64.b64encode(f.read()).decode()
-        break
+    hero_badge = "LIVE NOW"
+    hero_title = "DASUMY"
+    hero_subtitle = "Lo-fi & Chillhop Music"
+    hero_copy = "🎧 Chill lofi beats for a calm and cozy atmosphere. Take a moment, put on your headphones and drift along DaSumy's melodies."
+    cta_label = "▶ Visit YouTube Channel"
+    contact_line = "Or connect with me on"
+    playlist_section = "Music Player"
+    playlist_desc = "Listen to DaSumy's official playlist right here."
+    playlist_link_text = "Open playlist on YouTube"
+    cooperation_title = "Contact for collaboration"
+    cooperation_desc = "Click the link to connect directly with my Facebook."
+    form_name = "Your name"
+    form_email = "Contact email"
+    form_message = "Message or beat request"
+    submit_text = "Send message"
+    success_text = "Message sent successfully! I will get back to you soon 📨"
+    footer_note = "Thank you for listening ✨"
+    copyright_text = "© 2026 DASUMY. All rights reserved."
 
 PLAYLIST_URL = "https://www.youtube.com/watch?v=souGcWFKblM&list=PL2PFhA2YROwUztnpCbXmJCAXs-43gt9TI"
 FACEBOOK_URL = "https://www.facebook.com/duy.pham.437330/?locale=vi_VN"
@@ -94,16 +117,24 @@ body {{ overflow-x: hidden; }}
 .big-cta {{
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
+    justify-content: center;
+    gap: 0.75rem;
     border-radius: 999px;
-    padding: 0.95rem 1.5rem;
-    background: rgb(224,150,131);
+    padding: 1rem 1.75rem;
+    background: linear-gradient(135deg, rgba(224,150,131,1), rgba(255,255,255,0.92));
     color: #09090b;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: none;
+    box-shadow: 0 18px 40px -18px rgba(224,150,131,0.9);
     font-weight: 700;
     text-decoration: none;
+    transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
 }}
-.big-cta:hover {{ opacity: 0.95; transform: translateY(-1px); }}
+.big-cta:hover {{
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 28px 60px -28px rgba(224,150,131,0.9);
+    filter: saturate(1.08);
+}}
 .section-title {{
     font-size: 0.86rem;
     letter-spacing: 0.22em;
@@ -141,23 +172,15 @@ st.markdown(
     <section class="glass-panel hero-shell">
         <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; justify-content:space-between;">
             <div style="max-width: 640px;">
-                <div style="display:inline-flex; gap:0.6rem; align-items:center; background: rgba(224,150,131,0.12); border: 1px solid rgba(255,255,255,0.08); padding: 0.8rem 1rem; border-radius: 999px; color: #f4f4f5; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;">
+                    <div style="display:inline-flex; gap:0.6rem; align-items:center; background: rgba(224,150,131,0.12); border: 1px solid rgba(255,255,255,0.08); padding: 0.8rem 1rem; border-radius: 999px; color: #f4f4f5; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;">
                     <span style="width:0.65rem; height:0.65rem; background: #f8b4a2; border-radius: 999px; display:inline-block;"></span>
-                    LIVE NOW
+                    {hero_badge}
                 </div>
-                <div style="display:flex; align-items:center; gap:1rem; margin-top:1.4rem; margin-bottom:1.1rem; flex-wrap:wrap;">
-                    <img src="{logo_src}" alt="DaSuMy logo" style="width:96px; height:96px; border-radius: 20px; object-fit: cover; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04);" />
-                    <div>
-                        <h1 class="hero-title">DASUMY</h1>
-                        <p class="hero-subtitle">Lo-fi & Chillhop Music</p>
-                    </div>
-                </div>
-                <p class="hero-copy">🎧 Không gian âm nhạc nhẹ nhàng, mộc mạc và thư giãn. Hãy dừng chân, đeo tai nghe và thả hồn theo những giai điệu của DaSumy.</p>
-                <a class="big-cta" href="https://www.youtube.com/@DaSuMyMusic" target="_blank">▶ Ghé kênh YouTube</a>
-                <p style="margin-top: 1rem; color: #c7c7d2;">Hoặc kết nối với mình trên <a href="{FACEBOOK_URL}" target="_blank" style="color: rgb(224,150,131); text-decoration: none;">Facebook</a>.</p>
-            </div>
-            <div style="width: 260px; height: 260px; border-radius: 28px; overflow:hidden; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 20px 60px -40px var(--shadow); background: rgba(255,255,255,0.03);">
-                <img src="{channel_icon_src}" alt="DaSumy YouTube channel logo" style="width:100%; height:100%; object-fit: cover; display:block;">
+                <h1 class="hero-title" style="margin-top:1.4rem;">{hero_title}</h1>
+                <p class="hero-subtitle">{hero_subtitle}</p>
+                <p class="hero-copy">{hero_copy}</p>
+                <a class="big-cta" href="https://www.youtube.com/@DaSuMyMusic" target="_blank">{cta_label}</a>
+                <p style="margin-top: 1rem; color: #c7c7d2;">{contact_line} <a href="{FACEBOOK_URL}" target="_blank" style="color: rgb(224,150,131); text-decoration: none;">Facebook</a>.</p>
             </div>
         </div>
     </section>
@@ -168,43 +191,43 @@ st.markdown(
 with st.container():
     left, right = st.columns([2, 1], gap="large")
     with left:
-        st.markdown("<div class='section-title'>Trình nghe nhạc</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='section-title'>{playlist_section}</div>", unsafe_allow_html=True)
         st.video(PLAYLIST_URL)
         st.markdown(
-            """
+            f"""
             <div class="glass-panel" style="margin-top: 1.5rem;">
-                <div class="section-title">Playlist từ kênh YouTube</div>
-                <p style="color: #c7c7d2; margin: 0;">Nghe playlist chính thức của kênh DaSumy ngay tại đây.</p>
-                <p style="margin-top: 1rem;"><a href="https://www.youtube.com/playlist?list=PL2PFhA2YROwUztnpCbXmJCAXs-43gt9TI" target="_blank" style="color: rgb(224,150,131); text-decoration: none;">Mở playlist trên YouTube</a></p>
+                <div class="section-title">{playlist_section}</div>
+                <p style="color: #c7c7d2; margin: 0;">{playlist_desc}</p>
+                <p style="margin-top: 1rem;"><a href="https://www.youtube.com/playlist?list=PL2PFhA2YROwUztnpCbXmJCAXs-43gt9TI" target="_blank" style="color: rgb(224,150,131); text-decoration: none;">{playlist_link_text}</a></p>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
     with right:
-        st.markdown("<div class='section-title'>Gửi yêu cầu hợp tác</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='section-title'>{cooperation_title}</div>", unsafe_allow_html=True)
         st.markdown(
             f"""
             <div class='glass-panel' style='padding:1rem 1.25rem;'>
-                <p style='margin:0 0 0.75rem; color:#c7c7d2;'>Nhấn vào link để kết nối trực tiếp với Facebook của mình.</p>
+                <p style='margin:0 0 0.75rem; color:#c7c7d2;'>{cooperation_desc}</p>
                 <a href='{FACEBOOK_URL}' target='_blank' style='display:inline-block; color: rgb(224,150,131); text-decoration:none; font-weight:700;'>Facebook: duy.pham.437330</a>
             </div>
             """,
             unsafe_allow_html=True,
         )
         with st.form("contact_form"):
-            name = st.text_input("Tên của bạn")
-            email = st.text_input("Email liên hệ")
-            message = st.text_area("Lời nhắn hoặc yêu cầu mua beat")
-            submitted = st.form_submit_button("Gửi tin nhắn")
+            name = st.text_input(form_name)
+            email = st.text_input(form_email)
+            message = st.text_area(form_message)
+            submitted = st.form_submit_button(submit_text)
             if submitted:
-                st.success("Gửi lời nhắn thành công! Mình sẽ liên hệ lại sớm 📨")
+                st.success(success_text)
 
 st.markdown(
-    """
+    f"""
     <div class="glass-panel" style="text-align:center; margin-top: 1.5rem;">
-        <p style="margin: 0; color: #8b8b9a; font-size: 0.9rem;">Thank you for listening ✨</p>
-        <p style="margin: 0.35rem 0 0; color: #656571; font-size: 0.82rem;">© 2026 DASUMY. All rights reserved.</p>
+        <p style="margin: 0; color: #8b8b9a; font-size: 0.9rem;">{footer_note}</p>
+        <p style="margin: 0.35rem 0 0; color: #656571; font-size: 0.82rem;">{copyright_text}</p>
     </div>
     """,
     unsafe_allow_html=True,
